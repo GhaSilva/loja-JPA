@@ -1,10 +1,11 @@
 package br.com.ghabriel.loja.testes;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
+
+import br.com.ghabriel.loja.dao.ProdutoDao;
 import br.com.ghabriel.loja.modelo.Produto;
+import br.com.ghabriel.loja.util.JPAUtil;
 
 
 public class CadastroDeProduto {
@@ -14,10 +15,11 @@ public class CadastroDeProduto {
 		celular.setDescricao("Xiaomi redmi 8");
 		celular.setPreco(1500.0f);
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("loja");
-		EntityManager em = factory.createEntityManager();
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDao dao = new ProdutoDao(em);
+		
 		em.getTransaction().begin();
-		em.persist(celular);
+		dao.cadastrar(celular);
 		em.getTransaction().commit();
 		em.close();
 	}
