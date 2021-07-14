@@ -1,5 +1,6 @@
 package br.com.ghabriel.loja.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Produto {
 	private int id;
 	private String nome;
 	private String descricao;
-	private float preco;
+	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
 	
 	@ManyToOne
@@ -28,7 +29,7 @@ public class Produto {
 		
 	}
 	
-	public Produto(String nome, String descricao, float preco, Categoria categoria) {
+	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
@@ -59,11 +60,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public float getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(float preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
