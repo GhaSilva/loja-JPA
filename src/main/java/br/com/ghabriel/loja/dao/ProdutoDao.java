@@ -1,8 +1,9 @@
 package br.com.ghabriel.loja.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
-import br.com.ghabriel.loja.modelo.Categoria;
 import br.com.ghabriel.loja.modelo.Produto;
 
 public class ProdutoDao {
@@ -24,6 +25,15 @@ public class ProdutoDao {
 		produto = em.merge(produto);
 		this.em.remove(produto);
 		
+	}
+	
+	public Produto buscarPorId(int id) {
+		return em.find(Produto.class, id);
+	}
+	
+	public List<Produto> buscarTodos(){
+		String jqpl = "select p from Produto p";
+		return em.createQuery(jqpl, Produto.class).getResultList();
 	}
 	
 }
