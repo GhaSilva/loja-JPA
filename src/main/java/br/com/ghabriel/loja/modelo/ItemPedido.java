@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "itens_pedido")
+@Table(name = "items_pedido")
 public class ItemPedido {
 
 	@Id
@@ -27,6 +27,8 @@ public class ItemPedido {
 	
 	@ManyToOne
 	private Produto produto;
+
+
 
 	public ItemPedido() {
 		
@@ -78,6 +80,10 @@ public class ItemPedido {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+	
+	public BigDecimal getValor() {
+		return precoUnitario.multiply(new BigDecimal(quantidade));
 	}
 	
 	

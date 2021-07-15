@@ -25,14 +25,14 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "valor_total")
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
 	private LocalDate dataCadastro = LocalDate.now();
 	
 	@ManyToOne
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "pedido", cascade =CascadeType.ALL )
-	private List<ItemPedido> itens= new ArrayList<ItemPedido>();
+	private List<ItemPedido> items= new ArrayList<ItemPedido>();
 
 	public Pedido() {
 		
@@ -44,7 +44,8 @@ public class Pedido {
 
 	public void adicionarItem(ItemPedido item) {
 		item.setPedido(this);
-		this.itens.add(item);
+		this.items.add(item);
+		this.valorTotal = valorTotal.add(item.getValor());
 	}
 
 	public int getId() {

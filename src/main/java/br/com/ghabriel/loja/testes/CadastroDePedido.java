@@ -1,6 +1,7 @@
 package br.com.ghabriel.loja.testes;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -32,11 +33,22 @@ public class CadastroDePedido {
 		PedidoDao pedidoDao = new PedidoDao(em);
 		pedidoDao.cadastrar(pedido);
 		em.getTransaction().commit();
+		
+		BigDecimal totalVendido = pedidoDao.valorTotalVentido();
+		System.out.println("Total vendido: "+totalVendido);
 
+		
+		List<Object[]> relatorio = pedidoDao.relatorioDeVendas();
+		for (Object[] obj : relatorio) {
+			System.out.println(obj[0]);
+			System.out.println(obj[1]);
+			System.out.println(obj[2]);
+			
+		}
 	}
 		private static void popularBancoDeDados() {
 			Categoria celulares= new Categoria("CELULARES");
-			Produto celular = new Produto("Iphone", "Xiaomi redmi 8", new BigDecimal(1500), celulares);
+			Produto celular = new Produto("Iphone", "Xiaomi redmi 8", new BigDecimal("1500"), celulares);
 			
 			
 			EntityManager em = JPAUtil.getEntityManager();
