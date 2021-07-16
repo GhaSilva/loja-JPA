@@ -38,14 +38,14 @@ public class CadastroDePedido {
 		System.out.println("Total vendido: "+totalVendido);
 
 		
-		List<Object[]> relatorio = pedidoDao.relatorioDeVendas();
-		for (Object[] obj : relatorio) {
-			System.out.println(obj[0]);
-			System.out.println(obj[1]);
-			System.out.println(obj[2]);
+//		List<Object[]> relatorio = pedidoDao.relatorioDeVendas();
+//		for (Object[] obj : relatorio) {
+//			System.out.println(obj[0]);
+//			System.out.println(obj[1]);
+//			System.out.println(obj[2]);
 			
 		}
-	}
+	
 		private static void popularBancoDeDados() {
 			Categoria celulares= new Categoria("CELULARES");
 			Produto celular = new Produto("Iphone", "Xiaomi redmi 8", new BigDecimal("1500"), celulares);
